@@ -1,0 +1,67 @@
+---
+import LayoutPublic from '../layouts/LayoutPublic.astro';
+---
+
+<LayoutPublic title="Iniciar Sesión">
+  <div class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-md bg-[#e7dec5] border border-[#d3c5a4] rounded p-8 shadow-sm">
+      <div class="text-center mb-6">
+        <a href="/" class="text-2xl font-semibold text-[#1f3d2b] font-serif block mb-2">
+          La Caleta del Sabor
+        </a>
+        <h2 class="text-xl font-medium text-[#251f19]">Acceso al Sistema</h2>
+        <p class="text-sm text-[#6b6252] mt-1">Ingreso para clientes y personal del restaurante</p>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Próximamente: conexión con API de autenticación');">
+        <div>
+          <label class="block text-xs font-semibold text-[#6b6252] uppercase tracking-wider mb-1">
+            Correo / Usuario
+          </label>
+          <input
+            type="text"
+            required
+            placeholder="usuario@ejemplo.com"
+            class="w-full bg-[#fffdf8] border border-[#d3c5a4] rounded px-3 py-2 text-sm text-[#251f19] focus:outline-none focus:border-[#1f3d2b]"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#6b6252] uppercase tracking-wider mb-1">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            required
+            placeholder="••••••••"
+            class="w-full bg-[#fffdf8] border border-[#d3c5a4] rounded px-3 py-2 text-sm text-[#251f19] focus:outline-none focus:border-[#1f3d2b]"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#6b6252] uppercase tracking-wider mb-1">
+            Rol de Acceso
+          </label>
+          <select class="w-full bg-[#fffdf8] border border-[#d3c5a4] rounded px-3 py-2 text-sm text-[#251f19] focus:outline-none focus:border-[#1f3d2b]">
+            <option value="cliente">Cliente (Canal Digital)</option>
+            <option value="mesero">Mesero (Salón / Comandas)</option>
+            <option value="cocina">Cocina (KDS / Preparación)</option>
+            <option value="cajero">Cajero (Arqueo y Pagos)</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-[#1f3d2b] hover:bg-[#16301f] text-[#fffdf8] font-semibold py-2.5 px-4 rounded transition duration-150 text-sm mt-2"
+        >
+          Ingresar
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-[#d3c5a4] text-center text-xs text-[#6b6252]">
+        <a href="/" class="hover:text-[#1f3d2b] underline">← Volver a la Carta</a>
+      </div>
+    </div>
+  </div>
+</LayoutPublic>
