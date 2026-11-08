@@ -1,8 +1,10 @@
 ---
 import LayoutPublic from '../layouts/LayoutPublic.astro';
-import App from '../components/App.tsx';
+import Hero from '../components/Hero.astro';
+import PedidoOnline from '../components/PedidoOnline.tsx';
 ---
 
 <LayoutPublic title="Carta & Pedidos Web">
-  <App client:load />
+  <Hero />
+  <PedidoOnline client:load />
 </LayoutPublic>

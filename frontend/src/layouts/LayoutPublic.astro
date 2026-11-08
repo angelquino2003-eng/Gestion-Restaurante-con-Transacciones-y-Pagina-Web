@@ -1,6 +1,6 @@
 ---
-//import Header from '../components/Header.astro';
-//import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/App.css';
 
@@ -18,12 +18,22 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | La Caleta del Sabor</title>
   </head>
-  <body>
-    <!--Header /-->
-    <main>
-      <!-- <slot /> es la ranura donde se inyectará el contenido de cada página -->
+  <body class="site-body">
+    <Header />
+    <main class="site-main">
       <slot />
     </main>
-    <!--Footer /-->
+    <Footer />
   </body>
 </html>
+
+<style>
+  .site-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .site-main {
+    flex: 1;
+  }
+</style>
