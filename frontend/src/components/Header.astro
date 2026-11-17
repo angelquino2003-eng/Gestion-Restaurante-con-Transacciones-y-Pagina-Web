@@ -1,5 +1,11 @@
 ---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
+const navItems = [
+  { href: '/', label: 'Menú' },
+  { href: '/historia', label: 'Nuestra historia' },
+  { href: '/login', label: 'Acceso / Login' },
+];
 ---
 
 <header class="header">
@@ -14,9 +20,16 @@
     </a>
 
     <nav class="main-nav">
-      <a href="/#menu" class="active">Menú</a>
-      <a href="/#historia">Nuestra historia</a>
-      <a href="/login">Acceso / Login</a>
+      {
+        navItems.map((item) => {
+          const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+          return (
+            <a href={item.href} class={isActive ? 'active' : ''}>
+              {item.label}
+            </a>
+          );
+        })
+      }
     </nav>
   </div>
 </header>

@@ -1,5 +1,5 @@
-__pycache__/
-.vscode
+.vscode/
+.idea/
 
 # build output
 dist/
@@ -28,3 +28,23 @@ pnpm-debug.log*
 
 #agents
 .agents/
+
+
+#python backend
+
+venv/
+.venv/
+env/
+ENV/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.log
+*.sqlite3
+*.db
+
+.pytest_cache/
+.coverage
+htmlcov/

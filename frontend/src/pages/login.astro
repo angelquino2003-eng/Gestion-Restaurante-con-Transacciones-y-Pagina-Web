@@ -10,14 +10,14 @@ import LayoutPublic from '../layouts/LayoutPublic.astro';
         <p class="login-desc">Ingresa tus credenciales para acceder a tu cuenta o panel de trabajo</p>
       </div>
 
-      <form class="login-form" onsubmit="event.preventDefault(); alert('Conectando con API backend para verificar credenciales...');">
+      <form class="login-form" id="login-form">
         <div class="form-group">
-          <label for="username">Usuario o Correo Electrónico</label>
+          <label for="username">Usuario</label>
           <input
             id="username"
             type="text"
             required
-            placeholder="ej. tu-email@gmail.com"
+            placeholder="ej. carlos"
             autocomplete="username"
           />
         </div>
@@ -33,7 +33,9 @@ import LayoutPublic from '../layouts/LayoutPublic.astro';
           />
         </div>
 
-        <button type="submit" class="login-btn">
+        <p id="login-error" class="login-error" hidden></p>
+
+        <button type="submit" class="login-btn" id="login-btn">
           Iniciar Sesión
         </button>
       </form>
@@ -46,7 +48,59 @@ import LayoutPublic from '../layouts/LayoutPublic.astro';
   </div>
 </LayoutPublic>
 
+<script>
+  const ROL_DESTINO: Record<string, string> = {
+    mesero: '/panel/mesero',
+    cajero: '/panel/caja',
+    cocina: '/panel/cocina',
+    admin: '/panel/mesero',
+  };
+
+  document.getElementById('login-form')!.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn') as HTMLButtonElement;
+    const error = document.getElementById('login-error') as HTMLElement;
+    const usuario = (document.getElementById('username') as HTMLInputElement).value.trim();
+    const password = (document.getElementById('password') as HTMLInputElement).value;
+
+    btn.disabled = true;
+    btn.textContent = 'Verificando...';
+    error.hidden = true;
+
+    try {
+      const res = await fetch('http://localhost:8000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.detail ?? 'Credenciales incorrectas');
+      }
+
+      const { token, rol, nombre } = await res.json();
+      localStorage.setItem('token', token);
+      localStorage.setItem('rol', rol);
+      localStorage.setItem('nombre', nombre);
+
+      window.location.href = ROL_DESTINO[rol] ?? '/';
+    } catch (err: any) {
+      error.textContent = err.message;
+      error.hidden = false;
+      btn.disabled = false;
+      btn.textContent = 'Iniciar Sesión';
+    }
+  });
+</script>
+
 <style>
+  .login-error {
+    color: #b91c1c;
+    font-size: 0.82rem;
+    text-align: center;
+    margin: 0;
+  }
   .login-wrapper {
     display: flex;
     align-items: center;
