@@ -8,10 +8,17 @@ import java.util.List;
 public class VentaResponseDTO {
 
     private Integer idVenta;
+    private String tipoVenta;
     private Integer idMesa;
+    private Integer idCliente;
+    private Integer idEmpleado;
+    private Integer idCaja;
     private LocalDateTime fechaCreacion;
     private String estado;
     private BigDecimal montoItems;
+    private BigDecimal descuento;
+    private String motivoDescuento;
+    private BigDecimal costoDelivery;
     private BigDecimal baseImponible;
     private BigDecimal igv;
     private BigDecimal total;
@@ -28,12 +35,44 @@ public class VentaResponseDTO {
         this.idVenta = idVenta;
     }
 
+    public String getTipoVenta() {
+        return tipoVenta;
+    }
+
+    public void setTipoVenta(String tipoVenta) {
+        this.tipoVenta = tipoVenta;
+    }
+
     public Integer getIdMesa() {
         return idMesa;
     }
 
     public void setIdMesa(Integer idMesa) {
         this.idMesa = idMesa;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Integer getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(Integer idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public Integer getIdCaja() {
+        return idCaja;
+    }
+
+    public void setIdCaja(Integer idCaja) {
+        this.idCaja = idCaja;
     }
 
     public LocalDateTime getFechaCreacion() {
@@ -58,6 +97,30 @@ public class VentaResponseDTO {
 
     public void setMontoItems(BigDecimal montoItems) {
         this.montoItems = montoItems;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
+
+    public String getMotivoDescuento() {
+        return motivoDescuento;
+    }
+
+    public void setMotivoDescuento(String motivoDescuento) {
+        this.motivoDescuento = motivoDescuento;
+    }
+
+    public BigDecimal getCostoDelivery() {
+        return costoDelivery;
+    }
+
+    public void setCostoDelivery(BigDecimal costoDelivery) {
+        this.costoDelivery = costoDelivery;
     }
 
     public BigDecimal getBaseImponible() {
